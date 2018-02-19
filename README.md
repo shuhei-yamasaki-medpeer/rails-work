@@ -53,6 +53,16 @@ DNS.2 = *.test.dev
 $ git clone {pumaサーバのrailsアプリケーション} ./src
 ```
 
+DB設定
+
+データベースは `development` , `test` の名前で自動作成されるのでそれぞれに下記を追加
+```
+port: 3306
+username: root
+password: root
+host: rails_db
+```
+
 Docker Build
 
 ```
@@ -83,6 +93,5 @@ http://localhost:1080/
 ### show routes
 
 ```
-$ cd /path/to/work
 $ docker-compose run --rm rails_app bundle exec rails routes
 ```
