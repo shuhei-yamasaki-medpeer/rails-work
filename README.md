@@ -2,9 +2,13 @@
 
 ### Docker install
 下記からインストール
+
 mac
+
 https://docs.docker.com/docker-for-mac/install/#what-to-know-before-you-install
+
 win
+
 https://docs.docker.com/docker-for-windows/install/
 
 macでhomebrewが入っている場合下記でいけるかも
@@ -20,21 +24,24 @@ $ cd /path/to/work
 ### Set domain
 
 ./conf/domain.conf 内のexampleを好みのドメインへ書き換えて
+
 /etc/hosts を書き換え
 
 例）test.devでアクセスする時
-```./conf/domain.conf
+
+./conf/domain.conf
+```
 DNS.1 = example.dev
 DNS.2 = *.example.dev
 ```
 exampleを書き換え
-```./conf/domain.conf
+```
 DNS.1 = test.dev
 DNS.2 = *.test.dev
 ```
 
-hostsに下記を追記
-```/etc/hosts
+/etc/hosts に下記を追記
+```
 127.0.0.1 test.dev admin.test.dev
 ```
 
