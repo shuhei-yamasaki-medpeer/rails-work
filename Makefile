@@ -3,12 +3,15 @@ default: clean ssl
 	@docker-compose up -d rails_db
 	@docker-compose run --no-deps --rm rails_app bundle install -j4
 
-up: migrate
+up: migrate install
 	docker-compose up
 
 migrate:
 	@while ! docker-compose run --rm rails_db ls /var/lib/mysql/development > /dev/null ; do sleep 4; echo "."; done
 	docker-compose run --rm rails_app bin/rails db:migrate RAILS_ENV=development
+
+install:
+	@docker-compose run --no-deps --rm rails_app bundle install -j4
 
 ssl:
 	mkdir -p .sslkey .ssl
