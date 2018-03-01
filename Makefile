@@ -43,3 +43,6 @@ brakeman:
 
 rubocop:
 	docker-compose run --no-deps --rm rails_app bundle exec rubocop
+
+shell:
+	docker-compose run --rm rails_app bundle exec /bin/sh

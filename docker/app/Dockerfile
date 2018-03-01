@@ -2,7 +2,7 @@ FROM ruby:2.5-alpine
 
 RUN apk update && \
     apk upgrade && \
-    apk add --update build-base mysql-dev nodejs tzdata curl fontconfig && \
+    apk add --update build-base mysql-dev nodejs tzdata curl fontconfig yarn && \
     rm -rf /var/cache/apk/* && \
     cd /usr/share \
     && curl -L https://github.com/Overbryd/docker-phantomjs-alpine/releases/download/2.11/phantomjs-alpine-x86_64.tar.bz2 | tar xj \
