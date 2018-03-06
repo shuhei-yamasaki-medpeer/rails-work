@@ -12,6 +12,7 @@ migrate:
 
 install:
 	@docker-compose run --no-deps --rm rails_app bundle install -j4
+	@docker-compose run --no-deps --rm rails_app npm install
 
 ssl:
 	mkdir -p .sslkey .ssl
