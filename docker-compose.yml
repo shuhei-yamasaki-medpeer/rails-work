@@ -41,6 +41,7 @@ services:
       RDS_PASSWORD: root
       RDS_HOSTNAME: rails_db
       RDS_PORT: 3306
+      REDIS_HOSTNAME: redis://rails_redis:6379
     volumes:
       - ${PWD}/docker/app/bin:/work/bin:ro
       - ${PWD}/src:/work/app
@@ -49,9 +50,11 @@ services:
     depends_on:
       - rails_db
       - rails_smtp
+      - rails_redis
     links:
       - rails_db
       - rails_smtp
+      - rails_redis
 
   rails_smtp:
     image: schickling/mailcatcher
@@ -71,8 +74,17 @@ services:
       PMA_USER: root
       PMA_PASSWORD: root
 
+  rails_redis:
+    image: redis:3.2.11-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+       - rails-redis-data:/data
+
 volumes:
   rails-mysql-data:
     driver: local
   rails-bundle-data:
+    driver: local
+  rails-redis-data:
     driver: local
