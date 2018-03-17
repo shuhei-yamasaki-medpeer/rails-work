@@ -95,3 +95,39 @@ http://localhost:1080/
 ```
 $ docker-compose run --rm rails_app bundle exec rails routes
 ```
+
+### こんな時どうする？
+#### make時にmaria_dbのbuild時にエラーとなった場合
+
+zoneinfoファイルの参照でエラーとなっている可能性あり
+
+`~/` 以下にzoneinfoのファイルなどをコピーして
+
+docker-composeを下記のように修正すると動くかも
+
+```
+/usr/share/zoneinfo/Asia/Tokyo:/etc/localtime:ro
+を↓へ書き換え
+~/zoneinfo/Asia/Tokyo:/etc/localtime:ro
+```
+
+#### bundle installでエラーとなった場合
+
+`bundle install` 実行時に下記のようなエラーが出た場合
+
+```
+Could not find autoprefixer-rails-8.0.0 in any of the sources
+Run `bundle install` to install missing gems.
+```
+
+↓のコマンド実行で動く様になるかも
+
+```
+docker volume rm {ディレクトリ名}_rails-bundle-data
+```
+
+無くなっていることの確認は下記コマンドで可能
+
+```
+docker volume ls
+```
